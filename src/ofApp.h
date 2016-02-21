@@ -28,22 +28,25 @@ public:
     vector <shared_ptr<ofxBox2dCircle> > circles;
     
     
-    vector  <shared_ptr<ofxBox2dCircle> >  circles0;		  //	default box2d circles
+ /*   vector  <shared_ptr<ofxBox2dCircle> >  circles0;		  //	default box2d circles
     vector  <shared_ptr<ofxBox2dCircle> >  circles1;
     vector  <shared_ptr<ofxBox2dCircle> >  circles2;
     vector  <shared_ptr<ofxBox2dCircle> >  circles3;
     vector  <shared_ptr<ofxBox2dCircle> >  circles4;
     vector  <shared_ptr<ofxBox2dCircle> >  circles5;
     vector  <shared_ptr<ofxBox2dCircle> >  circles6;
+    */
+    vector<vector<shared_ptr<ofxBox2dCircle > > > circlesCollection;
+    vector<vector<shared_ptr<ofxBox2dJoint> > > jointsCollection;
     
-    
+    /*
     vector	<shared_ptr<ofxBox2dJoint> >  joints0;      //	joints
     vector	<shared_ptr<ofxBox2dJoint> >  joints1;
     vector	<shared_ptr<ofxBox2dJoint> >  joints2;
     vector	<shared_ptr<ofxBox2dJoint> >  joints3;
     vector	<shared_ptr<ofxBox2dJoint> >  joints4;
     vector	<shared_ptr<ofxBox2dJoint> >  joints5;
-    vector	<shared_ptr<ofxBox2dJoint> >  joints6;
+    vector	<shared_ptr<ofxBox2dJoint> >  joints6;*/
     
     float gravity_x;
     float gravity_y;

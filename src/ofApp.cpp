@@ -20,7 +20,6 @@ void ofApp::setup() {
     box2d.setFPS(60.0);
     box2d.registerGrabbing();
     
-    
     anchor[0].setup(box2d.getWorld(), ofGetWidth()/6, ofGetHeight()/6, 4);
     anchor[1].setup(box2d.getWorld(), ofGetWidth()/6*2, ofGetHeight()/6*2, 4);
     anchor[2].setup(box2d.getWorld(), ofGetWidth()/6*3, ofGetHeight()/6*3, 4);
@@ -29,47 +28,21 @@ void ofApp::setup() {
     anchor[5].setup(box2d.getWorld(), ofGetWidth()/4*3, ofGetHeight()/4, 4);
     anchor[6].setup(box2d.getWorld(), ofGetWidth()/4, ofGetHeight()/4*3, 4);
     
+    for(int i = 0; i < 6; i ++){
+        circlesCollection.push_back(*new vector<shared_ptr<ofxBox2dCircle> >);
+        jointsCollection.push_back(*new vector<shared_ptr<ofxBox2dJoint> >);
+    }
     
     
     
     for (int i=0; i<3; i++) {
         
-        shared_ptr<ofxBox2dCircle> circle0 = shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
-        circle0.get()->setPhysics(3.0, 0.53, 0.1);
-        circle0.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
-        circles0.push_back(circle0);
-        
-        shared_ptr<ofxBox2dCircle> circle1 = shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
-        circle1.get()->setPhysics(3.0, 0.53, 0.1);
-        circle1.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
-        circles1.push_back(circle1);
-        
-        shared_ptr<ofxBox2dCircle> circle2 = shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
-        circle2.get()->setPhysics(3.0, 0.53, 0.1);
-        circle2.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
-        circles2.push_back(circle2);
-        
-        shared_ptr<ofxBox2dCircle> circle3 = shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
-        circle3.get()->setPhysics(3.0, 0.53, 0.1);
-        circle3.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
-        circles3.push_back(circle3);
-        
-        shared_ptr<ofxBox2dCircle> circle4 = shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
-        circle4.get()->setPhysics(3.0, 0.53, 0.1);
-        circle4.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
-        circles4.push_back(circle4);
-        
-        shared_ptr<ofxBox2dCircle> circle5 = shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
-        circle5.get()->setPhysics(3.0, 0.53, 0.1);
-        circle5.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
-        circles5.push_back(circle5);
-        
-        shared_ptr<ofxBox2dCircle> circle6 = shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
-        circle6.get()->setPhysics(3.0, 0.53, 0.1);
-        circle6.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
-        circles6.push_back(circle6);
-        
-        
+        for(int n = 0; n < 6; n++){
+            shared_ptr<ofxBox2dCircle> circle = *new shared_ptr<ofxBox2dCircle>(new ofxBox2dCircle);
+            circle.get()->setPhysics(3.0, 0.53, 0.1);
+            circle.get()->setup(box2d.getWorld(), ofGetWidth()/2, 100+(i*20), 20);
+            circlesCollection[n].push_back(circle);
+        }
     }
     
     
@@ -190,7 +163,7 @@ void ofApp::draw() {
     BackgroundImage.draw(0,0,ofGetWidth(),ofGetHeight());
     
     box2d.setGravity(gravity_x, gravity_y);
-    
+    box2d.getGravity();
     
     //玉の描画
     for(int i=0; i<circles.size(); i++) {
